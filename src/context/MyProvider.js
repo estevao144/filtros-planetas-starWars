@@ -4,11 +4,19 @@ import mycontext from './MyContext';
 
 function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
-  // const [search, setSearch] = useState({
-  //   filterName: {
-  //     name: '',
-  //   },
-  // });
+  const [search, setSearch] = useState({
+    filterName: {
+      name: '',
+    },
+  });
+
+  function handleSearchChange(value) {
+    setSearch({
+      filterName: {
+        name: value,
+      },
+    });
+  }
 
   async function getPlanets() {
     const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -25,12 +33,13 @@ function Provider({ children }) {
   }, []);
 
   console.log(planets);
-  const contextValue = useMemo(() => ({ planets }), [planets]);
+  const contextValue = useMemo(
+    () => ({ planets, handleSearchChange, search }),
+    [planets, search],
+  );
 
   return (
-    <mycontext.Provider value={ contextValue }>
-      {children}
-    </mycontext.Provider>
+    <mycontext.Provider value={ contextValue }>{children}</mycontext.Provider>
   );
 }
 

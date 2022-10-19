@@ -19,7 +19,7 @@ function renderColunas() {
 }
 
 function Table() {
-  const { planets } = useContext(myContext);
+  const { planets, search } = useContext(myContext);
   return (
 
     <table>
@@ -27,7 +27,9 @@ function Table() {
       { renderColunas() }
 
       <tbody>
-        { planets.map((planet) => (
+        { planets.filter((planet) => (
+          planet.name.toLowerCase().includes(search.filterName.name)
+        )).map((planet) => (
           <tr key={ planet.name }>
             <td>{ planet.name }</td>
             <td>{ planet.rotation_period }</td>

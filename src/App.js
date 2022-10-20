@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchName from './components/SearchName';
+import AllFilters from './page/AllFilters';
 import Table from './components/Table';
 import Provider from './context/MyProvider';
 
 function App() {
   return (
     <Provider>
-      <SearchName />
+      <AllFilters />
       <Table />
     </Provider>
   );

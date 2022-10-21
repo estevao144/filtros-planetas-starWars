@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import myContext from './MyContext';
@@ -63,7 +62,7 @@ function Provider({ children }) {
     const { name } = event.target;
     console.log(name);
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const handleFilterChange = (id, value) => {
     setFilters({
       filterByNumericValues: {

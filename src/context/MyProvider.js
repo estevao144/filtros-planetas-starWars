@@ -42,6 +42,15 @@ function Provider({ children }) {
     getPlanets();
   }, []);
 
+  useEffect(() => {
+    setFilters({
+      filterByNumericValues: {
+        column: columns[0],
+        comparison: 'maior que',
+        value: 0,
+      } });
+  }, [totalFilters]);
+
   function handleSearchChange(value) {
     setSearch({
       filterByName: {
@@ -50,6 +59,10 @@ function Provider({ children }) {
     });
   }
 
+  function removeFilter(event) {
+    const { name } = event.target;
+    console.log(name);
+  }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFilterChange = (id, value) => {
     setFilters({
@@ -85,12 +98,18 @@ function Provider({ children }) {
       }
       return planet;
     });
+
     setColumns(columns.filter((element) => element !== column));
+    setAddFilter({
+      filterByNumericValues: filtersArray,
+    });
+
     setPlanets(filteredPlanets);
   }
 
   const contextValue = useMemo(
     () => ({
+      totalFilters,
       planets,
       search,
       filters,
@@ -98,12 +117,22 @@ function Provider({ children }) {
       handleSearchChange,
       handleFilterChange,
       handleFilterClick,
+      removeFilter,
     }),
-    [planets, search, filters, columns, handleSearchChange,
-      handleFilterChange, handleFilterClick],
+    [
+      planets,
+      search,
+      filters,
+      columns,
+      handleSearchChange,
+      handleFilterChange,
+      handleFilterClick,
+    ],
   );
 
-  return <myContext.Provider value={ contextValue }>{children}</myContext.Provider>;
+  return (
+    <myContext.Provider value={ contextValue }>{children}</myContext.Provider>
+  );
 }
 
 Provider.propTypes = {

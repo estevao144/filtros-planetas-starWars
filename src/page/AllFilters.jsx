@@ -7,6 +7,7 @@ function AllFilters() {
     <header>
       <SearchName />
       <Filters />
+
     </header>
   );
 }

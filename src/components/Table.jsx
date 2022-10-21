@@ -27,7 +27,7 @@ function Table() {
 
       { renderColunas() }
 
-      <tbody>
+      <tbody data-testid="table">
         {planets.length > 0 && (
           planets.filter((planet) => (
             planet.name.toLowerCase().includes(search.filterByName.name)

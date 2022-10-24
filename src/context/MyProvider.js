@@ -48,7 +48,7 @@ function Provider({ children }) {
         comparison: 'maior que',
         value: 0,
       } });
-  }, [totalFilters]);
+  }, [totalFilters, columns]);
 
   function handleSearchChange(value) {
     setSearch({
@@ -137,5 +137,5 @@ function Provider({ children }) {
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
+//
 export default Provider;
